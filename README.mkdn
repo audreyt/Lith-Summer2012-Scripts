@@ -1,0 +1,20 @@
+This repository hosts miscellaneous scripts to produce invoices,
+envelopes, registration sheets etc. for the LITH Summer 2012 lectures
+(立思 2012 夏天‧愛思考‧系列講座):
+
+    [7/22/2012](http://registrano.com/events/lith2012-gits)
+    Ghost in the Shell - Pay what you want
+    【攻殼機動隊】自由定價特別場
+
+    [7/29/2012 ~ 8/26/2012]http://registrano.com/events/lith2012
+    Gauguin's Tahiti                    【高更的大溪地】
+    Notes and Letters of Qiu Miaojin    【邱妙津的手記書信】
+    Norwegian Wood                      【挪威的森林】
+    A Dangerous Method                  【危險療程】
+
+# [CC0 1.0 Universal](http://creativecommons.org/publicdomain/zero/1.0)
+
+To the extent possible under law, 唐鳳 has waived all copyright and
+related or neighboring rights to Lith-Summer2012-Scripts.
+
+This work is published from Taiwan.
