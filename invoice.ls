@@ -40,7 +40,7 @@ for { reg_no, name, ticket } in Rows
  #ticket
 ----------------------
   報名人：#name
-    票價：$#price
+    合計：$#price
     序號：##reg_no
 ----------------------
  立思科技藝術有限公司
