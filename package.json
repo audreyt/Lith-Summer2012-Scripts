@@ -1,0 +1,8 @@
+{ "name": "Lith-Summer2012-Scripts"
+, "version": "0.0.0"
+, "description": "立思 2012 夏天愛思考系列講座相關程式"
+, "dependencies":
+    { "csv": "*"
+    , "LiveScript": "0.9.x"
+    }
+}
