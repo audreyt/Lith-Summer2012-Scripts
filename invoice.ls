@@ -32,6 +32,8 @@ for { reg_no, name, ticket } in Rows
     price = priceOf ticket
     ticket = ticket .replace /】/g  "】\n"
                     .replace /預售/ "   預售"
+
+    # TODO: 買受人統編: #seq
     console.log """
 2012-07-22
 ======================
@@ -44,7 +46,7 @@ for { reg_no, name, ticket } in Rows
     序號：##reg_no
 ----------------------
  立思科技藝術有限公司
-  統一編號：53343434
+ 營業人統編：53343434
 
    http://lith.tw/
 ======================
