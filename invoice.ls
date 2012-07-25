@@ -1,6 +1,6 @@
 #!/usr/bin/env livescript
 ColNameMap =
-    電話: \tel
+    電話: \phone
     地址: \address
     性別: \gender
     立思講座訊息: \info
@@ -26,16 +26,15 @@ priceOf = ->
 
 .on \end
 
-for { reg_no, name, ticket } in Rows
-| /攻殼/.test ticket and reg_no not in [ 116 225 ]
+for { reg_no, name, ticket, seq } in Rows
+| /高更/.test ticket and not /攻殼/.test ticket and reg_no not in [ 225 ] and not seq
     name -= /\s/g
     price = priceOf ticket
     ticket = ticket .replace /】/g  "】\n"
                     .replace /預售/ "   預售"
 
-    # TODO: 買受人統編: #seq
     console.log """
-2012-07-22
+2012-07-29
 ======================
 夏天．愛思考．系列講座
 

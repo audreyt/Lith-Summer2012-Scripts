@@ -1,6 +1,6 @@
 #!/usr/bin/env livescript
 ColNameMap =
-    電話: \tel
+    電話: \phone
     地址: \address
     性別: \gender
     立思講座訊息: \info
@@ -19,6 +19,12 @@ ColName = []
 
 .on \end
 
-for { reg_no, name } in Rows
-    name -= /\s/g
-    console.log "特 #reg_no\t#name"
+for { name, cellphone, phone, address, ticket, reg_no, id } in Rows
+| /攻殼/.test ticket and reg_no not in [ 225 ]
+    # name -= /\s/g
+    address = '' unless /.../.test address
+    cellphone ||= phone || ''
+    cellphone -= /-/g
+    cellphone.=replace 886 0
+    id ||= cellphone
+    console.log "*#reg_no\t#name\t#id"
