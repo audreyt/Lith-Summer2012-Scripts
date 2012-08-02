@@ -34,7 +34,13 @@ AlreadyPrinted = <[
 StickerNames = []
 
 for { reg_no, name, ticket, seq, paid_at } in Rows
-| /手記/.test ticket and not /高更/.test ticket and not /攻殼/.test ticket and reg_no not in AlreadyPrinted and (not /\d{5}/.test seq or reg_no in <[ 50 ]>) and (paid_at or IsPrintingStickerOnly)
+| /手記/.test ticket                            and
+  not /高更/.test ticket                        and
+  not /攻殼/.test ticket                        and
+  reg_no not in AlreadyPrinted                  and
+  (not /\d{5}/.test seq or reg_no in <[ 50 ]>)  and
+  (paid_at or IsPrintingStickerOnly)
+
     name -= /\s/g
 
     if IsPrintingStickerOnly

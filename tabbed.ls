@@ -25,10 +25,8 @@ ColName = []
 # $   未繳費（有信封，預備現場繳費，填寫地址用）
 for { name, cellphone, phone, address, ticket, reg_no, id, paid_at } in Rows
 | /手記/.test ticket
-    # name -= /\s/g
     marker = ''
-    if reg_no in <[ 439 ]>
-        continue
+    if reg_no in <[ 439 ]> => continue
     # TODO: Cross-check with sticker output for the ○ case
     unless paid_at
         marker = "$" unless reg_no in <[ 160 ]>
