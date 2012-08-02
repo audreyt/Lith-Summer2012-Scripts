@@ -1,5 +1,6 @@
 #!/usr/bin/env livescript
-ColNameMap =
+const IsPrintingStickerOnly = false
+const ColNameMap =
     電話: \phone
     地址: \address
     性別: \gender
@@ -8,6 +9,7 @@ ColNameMap =
     '從何處來？ ;-)': \from
     '身分證字號 / 護照號碼': \id
     '如需開立三聯式發票，請於下方填入買受人、統一編號與寄送地址，謝謝。': \seq
+
 Rows = []
 ColName = []
 
@@ -26,15 +28,30 @@ priceOf = ->
 
 .on \end
 
-for { reg_no, name, ticket, seq } in Rows
-| /高更/.test ticket and not /攻殼/.test ticket and reg_no not in [ 225 ] and not seq
+AlreadyPrinted = <[
+    23 33 50 54 97 101 103 104 116 130 175 183 191 273 280 283 286 287 298 308 312 315 318 319 321 327 335 336 338 348 378 402 406 417 440 444 454 458
+]>
+StickerNames = []
+
+for { reg_no, name, ticket, seq, paid_at } in Rows
+| /手記/.test ticket and not /高更/.test ticket and not /攻殼/.test ticket and reg_no not in AlreadyPrinted and (not /\d{5}/.test seq or reg_no in <[ 50 ]>) and paid_at
     name -= /\s/g
+
+    if IsPrintingStickerOnly
+        console.log "#reg_no\n\n"
+        StickerNames.push name
+        if StickerNames.length is 8
+            for n in StickerNames => console.log n
+            StickerNames = []
+        continue
+
     price = priceOf ticket
     ticket = ticket .replace /】/g  "】\n"
                     .replace /預售/ "   預售"
+                    .replace /\+ /g "+"
 
     console.log """
-2012-07-29
+2012-08-05
 ======================
 夏天．愛思考．系列講座
 
@@ -51,3 +68,7 @@ for { reg_no, name, ticket, seq } in Rows
 ======================
 .
 """
+
+for n in StickerNames => console.log n if IsPrintingStickerOnly
+
+1
