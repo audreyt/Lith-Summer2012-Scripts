@@ -1,5 +1,5 @@
 #!/usr/bin/env livescript
-const IsPrintingStickerOnly = false
+const IsPrintingStickerOnly = no
 const ColNameMap =
     電話: \phone
     地址: \address
@@ -34,9 +34,10 @@ AlreadyPrinted = <[
 StickerNames = []
 
 for { reg_no, name, ticket, seq, paid_at } in Rows
-| /手記/.test ticket                            and
+| /挪威/.test ticket                            and
   not /高更/.test ticket                        and
   not /攻殼/.test ticket                        and
+  not /手記/.test ticket                        and
   reg_no not in AlreadyPrinted                  and
   (not /\d{5}/.test seq or reg_no in <[ 50 ]>)  and
   (paid_at or IsPrintingStickerOnly)
@@ -53,11 +54,13 @@ for { reg_no, name, ticket, seq, paid_at } in Rows
 
     price = priceOf ticket
     ticket = ticket .replace /】/g  "】\n"
-                    .replace /預售/ "   預售"
-                    .replace /\+ /g "+"
+                    .replace /【/g  "  【"
+                    .replace /預售優惠套票/ "    預售優惠套票"
+                    .replace /預售優惠票/ "  預售優惠票"
+                    .replace /\+  /g "   +"
 
     console.log """
-2012-08-05
+2012-08-18
 ======================
 夏天．愛思考．系列講座
 
