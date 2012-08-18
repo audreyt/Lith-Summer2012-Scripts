@@ -1,5 +1,6 @@
 #!/usr/bin/env livescript
-const IsPrintingStickerOnly = no
+args = try require(\optimist)argv
+const IsPrintingStickerOnly = args?p
 const ColNameMap =
     電話: \phone
     地址: \address
@@ -28,9 +29,7 @@ priceOf = ->
 
 .on \end
 
-AlreadyPrinted = <[
-    23 33 50 54 97 101 103 104 116 130 175 183 191 273 280 283 286 287 298 308 312 315 318 319 321 327 335 336 338 348 378 402 406 417 439 440 444 454 458
-]>
+AlreadyPrinted = <[ ]>
 StickerNames = []
 
 for { reg_no, name, ticket, seq, paid_at } in Rows
@@ -39,8 +38,7 @@ for { reg_no, name, ticket, seq, paid_at } in Rows
   not /攻殼/.test ticket                        and
   not /手記/.test ticket                        and
   reg_no not in AlreadyPrinted                  and
-  (not /\d{5}/.test seq or reg_no in <[ 50 ]>)  and
-  (paid_at or IsPrintingStickerOnly)
+  (paid_at or IsPrintingStickerOnly or reg_no in <[ 489 ]>)
 
     name -= /\s/g
 
