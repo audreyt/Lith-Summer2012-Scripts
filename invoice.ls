@@ -33,10 +33,11 @@ AlreadyPrinted = <[ ]>
 StickerNames = []
 
 for { reg_no, name, ticket, seq, paid_at } in Rows
-| /挪威/.test ticket                            and
+| /危險/.test ticket                            and
   not /高更/.test ticket                        and
   not /攻殼/.test ticket                        and
   not /手記/.test ticket                        and
+  not /挪威/.test ticket                        and
   reg_no not in AlreadyPrinted                  and
   (paid_at or IsPrintingStickerOnly or reg_no in <[ 489 ]>)
 
@@ -58,7 +59,7 @@ for { reg_no, name, ticket, seq, paid_at } in Rows
                     .replace /\+  /g "   +"
 
     console.log """
-2012-08-18
+2012-08-26
 ======================
 夏天．愛思考．系列講座
 
