@@ -58,7 +58,7 @@ for { name, cellphone, phone, address, ticket, reg_no, id, paid_at, seq } in Row
     if MaskedOutput
         id = ''
         id = RegExp.$1 if cellphone.match /(\d{4})\s*$/
-        name.=replace /(.)./ "$1○"
+        name.=replace /(.).$/ "$1○"
     else
         marker.=replace /☑/ "🝔" if reg_no <= 175
 
