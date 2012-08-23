@@ -23,7 +23,7 @@ ColName = []
 .on \end
 
 HasSticker = <[ 
-    17 18 25 35 41 57 59 66 67 69 71 74 76 77 94 105 114 124 137 145 154 157 158 159 161 167 168 172 173 174 177 178 179 186 189 192 193 200 202 204 210 214 215 218 219 222 228 232 233 235 237 238 246 247 252 253 254 255 257 262 274 276 293 302 303 304 305 317 328 329 365 373 375 381 386 403 404 410 411 412 434 437 441 445 449 450 457 460 461 464 465 469 478 483 484 491 494 496 497 498 499 500 501 504 508 516 519 522 528 531 542 581 582 586 592 598 599 601 607 608 615 616 617 618 619 620 621 622 623 624 625 626 627 628
+    17 18 25 35 41 57 59 66 67 69 71 74 76 77 94 105 114 124 137 145 154 157 158 159 161 167 168 172 173 174 177 178 179 186 189 192 193 200 202 204 210 214 215 218 219 222 228 232 233 235 237 238 246 247 252 253 254 255 257 262 274 276 293 302 303 304 305 317 328 329 365 373 375 381 386 403 404 410 411 412 434 437 441 445 449 450 457 460 461 464 465 469 478 483 484 491 494 496 497 498 499 500 501 504 508 516 519 522 528 531 542 581 582 586 592 598 599 607 615 616 617 618 619 621 623 624 625 628 629 630 631
 ]>
 
 # TODO: Add a new "marker" column:
@@ -43,6 +43,7 @@ for { name, cellphone, phone, address, ticket, reg_no, id, paid_at, seq } in Row
     if /\d{5}/.test seq
         # console.log reg_no
         marker = null unless reg_no in <[ 51 66 ]>
+    marker = " " if reg_no in <[ 66 ]> or /套票/.test ticket
     marker ||= "☑"
     address = '' unless /.../.test address
     cellphone ||= phone || ''
@@ -55,12 +56,14 @@ for { name, cellphone, phone, address, ticket, reg_no, id, paid_at, seq } in Row
         String.fromCharCode(32 + it.charCodeAt(0) % 256)
     id.=toUpperCase!
 
+    name.=replace(/ / '') unless /^[A-Za-z]/.test name
+
     if MaskedOutput
         id = ''
         id = RegExp.$1 if cellphone.match /(\d{4})\s*$/
         name.=replace /(.).$/ "$1○"
     else
-        marker.=replace /☑/ "🝔" if reg_no <= 175
+        marker.=replace /☑/ "🝔" if reg_no <= 175 and not /套票/.test ticket
 
     if NamesOnly
         id = ''
